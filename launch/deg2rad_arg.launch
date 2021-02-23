@@ -1,0 +1,14 @@
+<launch>
+    <node name="get_pub_int" pkg="deg2rad_pkg" type="get_pub_int" 
+          output="screen" launch-prefix="gnome-terminal --" />  
+    <arg name="use_OO" default="0" /> <!-- default is not using OO version -->
+    <group if="$(eval arg('use_OO') == 0)" >
+          <node name="deg2rad" pkg="deg2rad_pkg" type="deg2rad" output="screen" />
+    </group>
+    <group if="$(eval arg('use_OO') == 1)" >
+          <node name="deg2rad_OO" pkg="deg2rad_pkg" type="deg2rad_OO" output="screen" />
+    </group>
+    <node name="sub_out_float" pkg="deg2rad_pkg" type="sub_out_float" output="screen" />
+</launch>
+
+
